@@ -21,15 +21,15 @@ class PlayingGameState: GameState() {
         TODO("Not yet implemented")
     }
 
-    override fun update() {
+    override fun update(game: Game, delta: Double) {
         Game.instance.world.atoms.forEach { atom ->
-            atom.update()
+            atom.update(game, delta)
         }
     }
 
-    override fun draw(alpha: Double) {
+    override fun draw(game: Game, delta: Double, alpha: Double) {
         Game.instance.world.atoms.forEach { atom ->
-            atom.draw(alpha)
+            atom.draw(game, delta, alpha)
         }
     }
 }

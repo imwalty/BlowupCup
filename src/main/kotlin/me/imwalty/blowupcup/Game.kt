@@ -2,6 +2,7 @@ package me.imwalty.blowupcup
 
 import me.imwalty.blowupcup.game.World
 import me.imwalty.blowupcup.game.atom.BlackstoneTile
+import me.imwalty.blowupcup.game.atom.BouncingBall
 import me.imwalty.blowupcup.graphics.Camera
 import me.imwalty.blowupcup.manager.AssetManager
 import me.imwalty.blowupcup.manager.PerformanceManager
@@ -21,7 +22,7 @@ class Game {
         this.delta = delta
         this.isRunning = true
         this.states = Stack<GameState>()
-        this.camera = Camera(Vector2(0.0, 0.0), World(), 15.0)
+        this.camera = Camera(Vector2(0.0, -0.5), World(), 13.0)
         this.assetManager = AssetManager()
         this.performanceManager = PerformanceManager()
         this.world = World()
@@ -34,10 +35,14 @@ class Game {
 
         this.pushState(GameState.PLAYING)
 
+        for(y in 0 until 13) {
+            for(x in 0 until 19) {
+                this.world.spawn(BlackstoneTile(Vector2(x.toDouble(), y.toDouble())))
+            }
+        }
 
-        val blackstoneTile = BlackstoneTile(Vector2(10.0 ,10.0))
-
-        this.world.spawn(blackstoneTile)
+        this.world.spawn(BouncingBall(Vector2(5.0, 5.0)))
+        this.world.spawn(BouncingBall(Vector2(6.0, 6.0)))
 
 
     }
@@ -52,11 +57,11 @@ class Game {
         this.states.pop()
     }
     fun update() {
-        this.states.peek().update()
+        this.states.peek().update(this, this.delta)
     }
     fun draw(alpha: Double) {
         this.performanceManager.registerFrame()
-        this.states.peek().draw(alpha)
+        this.states.peek().draw(this, this.delta, alpha)
         this.camera.render()
     }
 

@@ -58,11 +58,10 @@ class Camera {
 
     fun draw(texture: Texture, worldPosition: Vector2) {
         val screenPosition = this.worldPositionToScreenPosition(worldPosition)
-        println(worldPosition)
-        println(screenPosition)
-        this.graphics2D.drawImage(Game.instance.assetManager.getTexture(texture),
+        val bufferedImage = Game.instance.assetManager.getTexture(texture)
+        this.graphics2D.drawImage(bufferedImage,
             screenPosition.x,
-            screenPosition.y,
+            screenPosition.y - bufferedImage.height,
             null)
     }
 

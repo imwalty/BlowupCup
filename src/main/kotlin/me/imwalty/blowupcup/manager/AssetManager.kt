@@ -11,6 +11,7 @@ class AssetManager: Manager() {
     override fun initialize() {
         try {
             this.textures.put(Texture.BLACKSTONE_TILE, this.scaleBufferedImage(ImageIO.read(File("assets/textures/atoms/tiles/blackstone_tile.png"))))
+            this.textures.put(Texture.BOUNCING_BALL, this.scaleBufferedImage(ImageIO.read(File("assets/textures/atoms/entities/bouncing_ball.png"))))
         } catch (_: Error) {}
     }
     override fun terminate() {

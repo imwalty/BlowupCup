@@ -1,4 +1,5 @@
 import me.imwalty.blowupcup.Game
+import kotlin.system.exitProcess
 
 @Suppress("UNUSED_PARAMETER")
 fun main(args: Array<String>) {
@@ -20,4 +21,6 @@ fun main(args: Array<String>) {
         }
         game.draw(accTime.toDouble() / timePerTick)
     }
+    game.terminate()
+    exitProcess(0)
 }

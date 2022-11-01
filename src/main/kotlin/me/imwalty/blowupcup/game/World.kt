@@ -5,7 +5,7 @@ class World {
     val atoms: MutableList<Atom>
 
     constructor() {
-        this.dotsPerUnit = 12
+        this.dotsPerUnit = 16
         this.atoms = mutableListOf()
     }
 
